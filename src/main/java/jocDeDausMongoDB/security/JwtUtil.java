@@ -16,6 +16,8 @@ public class JwtUtil {
 
     //public static final long TOKEN_EXPIRATION_TIME = 60000; // 1 min
     public static final long TOKEN_EXPIRATION_TIME = 86400000; // 1 dia
+    private static final String HEADER_AUTHORIZACION_KEY = "Authorization";
+    private static final String TOKEN_BEARER_PREFIX = "Bearer ";
 
     // Método para crear el JWT y enviarlo al cliente en el header de la respuesta
     static void addAuthentication(HttpServletResponse res, String username) {
@@ -33,23 +35,23 @@ public class JwtUtil {
                 .compact();
 
         //agregamos al encabezado el token
-        res.addHeader("Authorization", "Bearer " + token);
+        res.addHeader(HEADER_AUTHORIZACION_KEY, TOKEN_BEARER_PREFIX + token);
 
         //agregamos al encabezado el token
-        res.addHeader("Authorization", token);
+        res.addHeader(HEADER_AUTHORIZACION_KEY, token);
     }
 
     // Método para validar el token enviado por el cliente
     static Authentication getAuthentication(HttpServletRequest request) {
 
         // Obtenemos el token que viene en el encabezado de la peticion
-        String token = request.getHeader("Authorization");
+        String token = request.getHeader(HEADER_AUTHORIZACION_KEY);
 
         // si hay un token presente, entonces lo validamos
         if (token != null) {
             String user = Jwts.parser()
                     .setSigningKey("secret@")
-                    .parseClaimsJws(token.replace("Bearer", "")) //este metodo es el que valida
+                    .parseClaimsJws(token.replace(TOKEN_BEARER_PREFIX, "")) //este metodo es el que valida
                     .getBody()
                     .getSubject();
 
