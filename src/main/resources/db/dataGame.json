@@ -1,0 +1,60 @@
+[	{
+		"_class" : "jocDeDausMongoDB.collection.GameCollection",
+		"idGame": "1",
+		"idPlayer": "1",
+		"idCrapsRoll": "1",
+		"gameResult": true
+	},
+	{
+		"_class" : "jocDeDausMongoDB.collection.GameCollection",
+		"idGame": "2",
+		"idPlayer": "1",
+		"idCrapsRoll": "2",
+		"gameResult": false
+	},
+	{
+		"_class" : "jocDeDausMongoDB.collection.GameCollection",
+		"idGame": "3",
+		"idPlayer": "1",
+		"idCrapsRoll": "3",
+		"gameResult": false
+	},
+	{
+		"_class" : "jocDeDausMongoDB.collection.GameCollection",
+		"idGame": "4",
+		"idPlayer": "2",
+		"idCrapsRoll": "4",
+		"gameResult": true
+	},
+	{
+		"_class" : "jocDeDausMongoDB.collection.GameCollection",
+		"idGame": "5",
+		"idPlayer": "2",
+		"idCrapsRoll": "5",
+		"gameResult": false
+	},
+	{
+		"_class" : "jocDeDausMongoDB.collection.GameCollection",
+		"idGame": "6",
+		"idPlayer": "3",
+		"idCrapsRoll": "6",
+		"gameResult": true
+	},
+	{
+		"_class" : "jocDeDausMongoDB.collection.GameCollection",
+		"idGame": "7",
+		"idPlayer": "3",
+		"idCrapsRoll": "7",
+		"gameResult": true
+	}
+]
+
+
+
+
+
+
+
+
+
+

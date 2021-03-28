@@ -1,0 +1,61 @@
+[	{
+		"_class" : "jocDeDausMongoDB.collection.CrapsRollCollection",
+		"idCrapsRoll": "1",
+		"idPlayer": "1",
+		"crapOne": 5,
+		"crapTwo": 2,
+		"rollResult": 7
+	},
+	{
+		"_class" : "jocDeDausMongoDB.collection.CrapsRollCollection",
+		"idCrapsRoll": "2",
+		"idPlayer": "1",
+		"crapOne": 5,
+		"crapTwo": 5,
+		"rollResult": 10
+	},
+	{
+		"_class" : "jocDeDausMongoDB.collection.CrapsRollCollection",
+		"idCrapsRoll": "3",
+		"idPlayer": "1",
+		"crapOne": 6,
+		"crapTwo": 6,
+		"rollResult": 12
+	},
+	{
+		"_class": "jocDeDausMongoDB.collection.CrapsRollCollection",
+		"idCrapsRoll": "4",
+		"idPlayer": "2",
+		"crapOne": 5,
+		"crapTwo": 2,
+		"rollResult": 7
+	},
+	{
+		"_class": "jocDeDausMongoDB.collection.CrapsRollCollection",
+		"idCrapsRoll": "5",
+		"idPlayer": "2",
+		"crapOne": 5,
+		"crapTwo": 3,
+		"rollResult": 8
+	},
+	{
+		"_class": "jocDeDausMongoDB.collection.CrapsRollCollection",
+		"idCrapsRoll": "6",
+		"idPlayer": "3",
+		"crapOne": 5,
+		"crapTwo": 2,
+		"rollResult": 7
+	},
+	{
+		"_class": "jocDeDausMongoDB.collection.CrapsRollCollection",
+		"idCrapsRoll": "7",
+		"idPlayer": "3",
+		"crapOne": 2,
+		"crapTwo": 5,
+		"rollResult": 7
+	}
+]
+
+
+
+

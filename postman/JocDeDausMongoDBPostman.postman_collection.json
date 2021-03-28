@@ -1,0 +1,616 @@
+{
+	"info": {
+		"_postman_id": "88020e5c-3799-4509-9d7b-3466bd622e15",
+		"name": "JocDeDausMongoDBPostman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Security Authentication",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"name\":\"user\",\r\n    \"password\":\"secret@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Create Anonymous Player",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\":\" \"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/players",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Tirada de Dados [CrapsRoll Player]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/players/1/games",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players",
+						"1",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Tirada de Dados [CrapsRoll Player] Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/players/2/games",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players",
+						"2",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Listado deTiradas de Dados [CrapsRolls By Player List]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/players/1/games",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players",
+						"1",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Listado deTiradas de Dados [CrapsRolls By Player List] Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/players/2/games",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players",
+						"2",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Tiradas de Dados de Jugador [Delete CrapsRolls By Player]",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/players/1/games",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players",
+						"1",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Tiradas de Dados de Jugador [Delete CrapsRolls By Player] Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/players/3/games",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players",
+						"3",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Create New Player",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\":\"Faker \"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/players",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All Players",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"root\", \"password\":\"secret\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/players",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET One Player",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/players/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL One Player",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/players/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All Players List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/players/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Average Ranking All Players",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/players/ranking",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players",
+						"ranking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Best Player",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/players/ranking/winner",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players",
+						"ranking",
+						"winner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Worst Player",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/players/ranking/loser",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players",
+						"ranking",
+						"loser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Rename Player",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjE2ODk0NDk2fQ.FqLwZtkWwGETIkTCNSru__ACuWg0-vM1f50vM99czubo14ZxLFGtLBtZUGbUjr7OngjonfO2oKakdSx7BZTR-Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Cupquake  \"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/players/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"players",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
