@@ -12,10 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
+ * Clase de la capa Security
+ *
  * Las peticiones que no sean /login pasarán por este filtro
  * el cuál se encarga de pasar el "request" a nuestra clase de utilidad JwtUtil
  * para que valide el token.
  */
+
 public class JwtFilter extends GenericFilterBean {
 
 

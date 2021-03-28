@@ -3,8 +3,8 @@ package jocDeDausMongoDB.util.assembler;
 import jocDeDausMongoDB.collection.CrapsRollCollection;
 import jocDeDausMongoDB.collection.PlayerCollection;
 import jocDeDausMongoDB.controller.PlayerControllerMongoDB;
-import jocDeDausMongoDB.resource.CrapsRollModel;
-import jocDeDausMongoDB.resource.PlayerModel;
+import jocDeDausMongoDB.dto.CrapsRollModel;
+import jocDeDausMongoDB.dto.PlayerModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
@@ -17,6 +17,18 @@ import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
+/**
+ * Clase de la capa de Utilidades
+ *
+ * Implemente la interfaz RepresentationModelAssembler
+ * (pertenece al modulo de Spring HATEOAS, org.springframework.hateoas.server)
+ *
+ * Convierte un objeto de dominio en un RepresentationModel, que es una clase base
+ * para que los DTO recopilen enlaces, un EntityModel simple que envuelve un objeto
+ * de dominio y le agrega enlaces.
+ *
+ */
 
 @Component
 public class PlayerModelAssembler extends RepresentationModelAssemblerSupport<PlayerCollection, PlayerModel> {

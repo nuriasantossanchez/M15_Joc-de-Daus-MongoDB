@@ -1,14 +1,17 @@
-package jocDeDausMongoDB.resource;
+package jocDeDausMongoDB.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
-import org.springframework.hateoas.server.core.Relation;
 
 import java.util.List;
 
 import static java.util.Comparator.comparing;
+
+/**
+ * Clase de la capa DTO, representa un recurso que se solicita en una peticion y
+ * que sera obtenido en forma de RepresentationModel,  es decir, con enlaces agregados
+ */
 
 @NoArgsConstructor
 @AllArgsConstructor

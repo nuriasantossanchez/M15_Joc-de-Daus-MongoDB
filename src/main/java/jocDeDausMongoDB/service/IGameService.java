@@ -8,12 +8,10 @@ import java.util.List;
  * Interface de la capa Service
  *
  */
+
 public interface IGameService {
 
-    Long countAll();
-
-    List<GameCollection> allGames(); // average success ranking of all playerCollections
-
+    List<GameCollection> allGames();
     GameCollection saveGame(GameCollection gameCollection);
 
     List<GameCollection> listGamesByIdPlayer(String idPlayer);

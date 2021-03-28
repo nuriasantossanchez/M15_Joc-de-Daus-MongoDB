@@ -5,8 +5,8 @@ package jocDeDausMongoDB.controller.exception;
  *
  * Extiende RuntimeException, de tipo unchecked.
  *
- * La exception es lanzada en la ejecucion de ciertos metodos, en los casos en los que
- * la peticion de recuperar un objeto de tipo GameCollection pueda no devolver ningun resultado
+ * La exception es lanzada en la ejecucion de ciertos metodos, en los casos
+ * en los que la peticion GET no devuelve ningun resultado
  */
 public class PlayerNotFoundException extends RuntimeException {
 

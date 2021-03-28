@@ -5,8 +5,8 @@ import jocDeDausMongoDB.collection.GameCollection;
 import jocDeDausMongoDB.collection.PlayerCollection;
 import jocDeDausMongoDB.collection.Ranking;
 import jocDeDausMongoDB.controller.exception.PlayerNotFoundException;
-import jocDeDausMongoDB.resource.CrapsRollModel;
-import jocDeDausMongoDB.resource.PlayerModel;
+import jocDeDausMongoDB.dto.CrapsRollModel;
+import jocDeDausMongoDB.dto.PlayerModel;
 import jocDeDausMongoDB.service.ICrapsRollService;
 import jocDeDausMongoDB.service.IGameService;
 import jocDeDausMongoDB.service.IPlayerService;
@@ -32,19 +32,14 @@ import java.util.Optional;
 
 
 /**
- * Clase de la capa Controller.
- * La anotacion @RestController convierte a la aplicacion en un REST Service, basado en el intercambio
- * de recursos (elementos de informacion) entre componentes de la red, clientes y servidores, que
- * se comunican a traves del protocolo HTTP
+ * Clase de la capa Controller
+ *
+ * Punto de acceso a las peticiones sera http://localhost:8082/{path},
  *
  */
-//@RestController
-//@RepositoryRestResource(exported=true, collectionResourceRel = "players", path = "players")
-//@RepositoryRestResource
 @RepositoryRestController
-//@RequestMapping(value="/")
-//@BasePathAwareController
 public class PlayerControllerMongoDB {
+
 
     private final IUtilities iUtilities;
     private final IPlayerService iPlayerService;
@@ -56,6 +51,19 @@ public class PlayerControllerMongoDB {
     private final CrapsRollModelAssembler crapsRollModelAssembler;
     private final RankingModelAssembler rankingModelAssembler;
 
+    /**
+     * Constructor de la clase
+     *
+     * @param iUtilities
+     * @param iPlayerService
+     * @param iCrapsRollService
+     * @param iGameService
+     * @param playerPagedResourcesAssembler
+     * @param crapsRollPagedResourcesAssembler
+     * @param playerModelAssembler
+     * @param crapsRollModelAssembler
+     * @param rankingModelAssembler
+     */
     @Autowired
     public PlayerControllerMongoDB(IUtilities iUtilities, IPlayerService iPlayerService,
                                    ICrapsRollService iCrapsRollService, IGameService iGameService,
@@ -74,12 +82,17 @@ public class PlayerControllerMongoDB {
         this.rankingModelAssembler = rankingModelAssembler;
     }
 
+    /**
+     * Mapeo de una peticion HTTP POST, a la URL http://localhost:8082/players
+     *
+     * Crea un jugador
+     *
+     * @param newPlayerCollection
+     * @return
+     */
     @PostMapping("/players")
     public ResponseEntity<?> newPlayer(@Valid @RequestBody PlayerCollection newPlayerCollection) {
-        // crea un jugador
-
         List<PlayerCollection> playerCollections = iPlayerService.listPlayers();
-
         Optional<PlayerCollection> uniqueNickName = IUtilities.checkUniqueNickName(
                 newPlayerCollection, playerCollections);
 
@@ -90,7 +103,6 @@ public class PlayerControllerMongoDB {
                     playerModelAssembler.toModel(playerCollection),
                     HttpStatus.OK);
         }
-
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(Problem.create()
@@ -98,18 +110,23 @@ public class PlayerControllerMongoDB {
                         .withDetail("There is another player with that Nick Name."));
     }
 
+    /**
+     * Mapeo de una peticion HTTP PUT, a la URL http://localhost:8082/players/{id}
+     *
+     * Modifica el nombre de un jugador
+     *
+     * @param newPlayerCollection
+     * @param idPlayer
+     * @return
+     */
     @PutMapping("/players/{id}")
     public ResponseEntity<?> updatePlayer(@Valid @RequestBody PlayerCollection newPlayerCollection,
                                           @PathVariable(name="id") String idPlayer) {
-        // modifica nombre de un jugador
-
         List<PlayerCollection> playerCollections = iPlayerService.listPlayers();
 
         Optional<PlayerCollection> uniqueNickName = IUtilities.checkUniqueNickName(
                 newPlayerCollection, playerCollections);
-
         if (!uniqueNickName.isPresent()){
-
             PlayerCollection updatedPlayerCollection = iPlayerService.findPlayerById(idPlayer)
                     .map(player -> {
                         player.setName(newPlayerCollection.getName().trim());
@@ -133,23 +150,27 @@ public class PlayerControllerMongoDB {
 
                         return iPlayerService.savePlayer(newPlayerCollection);
                     });
-
             return new ResponseEntity<>(
                     playerModelAssembler.toModel(updatedPlayerCollection),
                     HttpStatus.OK);
         }
-
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(Problem.create()
                         .withTitle("Please select another Nick Name.")
                         .withDetail("There is another player with that Nick Name."));
-
     }
 
+    /**
+     * Mapeo de una peticion HTTP GET, a la URL http://localhost:8082/players/{id}
+     *
+     * Get one player
+     *
+     * @param idPlayer
+     * @return
+     */
     @GetMapping("/players/{id}")
     public ResponseEntity<PlayerModel> one(@PathVariable(name="id") String idPlayer) {
-
         PlayerCollection player = iPlayerService.findPlayerById(idPlayer)
                 .orElseThrow(() -> new PlayerNotFoundException(idPlayer));
         player.setRanking(
@@ -163,23 +184,33 @@ public class PlayerControllerMongoDB {
                 HttpStatus.OK);
     }
 
+    /**
+     * Mapeo de una peticion HTTP DELETE, a la URL http://localhost:8082/players/{id}
+     *
+     * Delete one player
+     *
+     * @param idPlayer
+     * @return
+     */
     @DeleteMapping("/players/{id}")
     public ResponseEntity<?> deletePlayer(@PathVariable(name="id") String idPlayer) {
-        // listado de tiradas de un jugador
-
         PlayerCollection player = iPlayerService.findPlayerById(idPlayer)
                 .orElseThrow(() -> new PlayerNotFoundException(idPlayer));
 
         iPlayerService.deletePlayer(player);
-
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * Mapeo de una peticion HTTP GET, a la URL http://localhost:8082/players
+     *
+     * Listado de jugadores junto con su porcentaje medio de exito
+     *
+     * @param pageable
+     * @return
+     */
     @GetMapping("/players")
     public ResponseEntity<PagedModel<PlayerModel>> allPlayers(Pageable pageable){
-
-        // listado de jugadores con su porcentaje medio de exito
-
         Page<PlayerCollection> playerCollections = iPlayerService.listPlayers(pageable);
 
         playerCollections.forEach(p -> p.setRanking(
@@ -193,9 +224,15 @@ public class PlayerControllerMongoDB {
                 .toModel(playerCollections, playerModelAssembler);
 
         return new ResponseEntity<>(collectionModel,HttpStatus.OK);
-
     }
 
+    /**
+     * Mapeo de una peticion HTTP GET, a la URL http://localhost:8082/players/list
+     *
+     * Listado de jugadores junto con su porcentaje medio de exito
+     *
+     * @return
+     */
     @GetMapping("/players/list")
     public ResponseEntity<CollectionModel<PlayerModel>> allPlayers()
     {
@@ -213,13 +250,16 @@ public class PlayerControllerMongoDB {
                 HttpStatus.OK);
     }
 
-
-
+    /**
+     * Mapeo de una peticion HTTP POST, a la URL http://localhost:8082/players/{id}/games
+     *
+     * Jugador realiza tirada de dados
+     *
+     * @param idPlayer
+     * @return
+     */
     @PostMapping("/players/{id}/games")
     public ResponseEntity<?> newCrapsRollPlayer(@PathVariable(name="id") String idPlayer) {
-
-        // jugador realiza tirada de dados
-
         PlayerCollection playerCollection = iPlayerService.findPlayerById(idPlayer)
                 .orElseThrow(() -> new PlayerNotFoundException(idPlayer));
 
@@ -242,30 +282,40 @@ public class PlayerControllerMongoDB {
 
     }
 
+    /**
+     * Mapeo de una peticion HTTP GET, a la URL http://localhost:8082/players/{id}/games
+     *
+     * Listado de tiradas de un jugador
+     *
+     * @param idPlayer
+     * @return
+     */
     @GetMapping("/players/{id}/games")
     public ResponseEntity<CollectionModel<CrapsRollModel>> allCrapsRollsByPlayer(
                                                     @PathVariable(name="id") String idPlayer) {
-        // listado de tiradas de un jugador
-
         PlayerCollection player = iPlayerService.findPlayerById(idPlayer)
                 .orElseThrow(() -> new PlayerNotFoundException(idPlayer));
 
         List<CrapsRollCollection> crapsRollsCollections = iCrapsRollService.listCrapsRollsByIdPlayer(idPlayer);
 
         if (!crapsRollsCollections.isEmpty()){
-
             return new ResponseEntity<>(
                     crapsRollModelAssembler.toCollectionModel(crapsRollsCollections),
                     HttpStatus.OK);
         }
-
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * Mapeo de una peticion HTTP DELETE, a la URL http://localhost:8082/players/{id}/games
+     *
+     * Elimina tiradas de un jugador
+     *
+     * @param idPlayer
+     * @return
+     */
     @DeleteMapping("/players/{id}/games")
     public ResponseEntity<?> deleteCrapsRollsByPlayer(@PathVariable(name="id") String idPlayer) {
-        // elimina tiradas de un jugador
-
         PlayerCollection player = iPlayerService.findPlayerById(idPlayer)
                 .orElseThrow(() -> new PlayerNotFoundException(idPlayer));
 
@@ -279,11 +329,15 @@ public class PlayerControllerMongoDB {
         return ResponseEntity.noContent().build();
     }
 
+    /**
+     * Mapeo de una peticion HTTP GET, a la URL http://localhost:8082/players/ranking
+     *
+     * Ranking medio, porcentaje medio de exito de todos los jugadores
+     *
+     * @return
+     */
     @GetMapping("/players/ranking")
     public ResponseEntity<?> averageSuccessRankingAllPlayers() {
-
-        // ranking medio, porcentaje medio de exito de todos los jugadores
-
         List<GameCollection> allGames = iGameService.allGames();
 
         Double averageRankingAllPlayers = IUtilities.computeAverageRankingAllPlayers(allGames);
@@ -296,11 +350,15 @@ public class PlayerControllerMongoDB {
                 HttpStatus.OK);
     }
 
+    /**
+     * Mapeo de una peticion HTTP GET, a la URL http://localhost:8082/players/ranking/loser
+     *
+     * Jugador con peor porcentaje de exito
+     *
+     * @return
+     */
     @GetMapping("/players/ranking/loser")
     public ResponseEntity<?> playerLoser() {
-
-        // jugador con peor porcentaje de exito
-
         List<PlayerCollection> allPlayers = iPlayerService.listPlayers();
 
         allPlayers.forEach(p -> p.setRanking(
@@ -316,10 +374,16 @@ public class PlayerControllerMongoDB {
                 playerModelAssembler.toModel(playerLoser.get()),
                 HttpStatus.OK);
     }
+
+    /**
+     * Mapeo de una peticion HTTP GET, a la URL http://localhost:8082/players/ranking/winner
+     *
+     * Jugador con mejor porcentaje de exito
+     *
+     * @return
+     */
     @GetMapping("/players/ranking/winner")
     public ResponseEntity<?> playerWinner() {
-
-        // jugador con mejor porcentaje de exito
         List<PlayerCollection> allPlayers = iPlayerService.listPlayers();
 
         allPlayers.forEach(p -> p.setRanking(
@@ -335,5 +399,4 @@ public class PlayerControllerMongoDB {
                 playerModelAssembler.toModel(playerWinner.get()),
                 HttpStatus.OK);
     }
-
 }

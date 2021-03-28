@@ -23,6 +23,7 @@ import java.util.*;
  * automaticamente por la funcionalidad de inyeccion de dependencias de Spring
  *
  */
+
 @Service
 public class CrapsRollServiceImpl implements ICrapsRollService {
 
@@ -43,10 +44,5 @@ public class CrapsRollServiceImpl implements ICrapsRollService {
     @Override
     public List<CrapsRollCollection> listCrapsRollsByIdPlayer(String idPlayer) {
         return iCrapsRollRepository.findCrapsRollsByIdPlayer(idPlayer);
-    }
-
-    @Override
-    public Long countAll() {
-        return iCrapsRollRepository.count();
     }
 }

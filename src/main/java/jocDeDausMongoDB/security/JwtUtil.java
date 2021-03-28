@@ -1,6 +1,5 @@
 package jocDeDausMongoDB.security;
 
-
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,6 +11,10 @@ import java.util.Date;
 
 import static java.util.Collections.emptyList;
 
+/**
+ * Clase de la capa Security
+ *
+ */
 public class JwtUtil {
 
     //public static final long TOKEN_EXPIRATION_TIME = 60000; // 1 min
@@ -21,9 +24,6 @@ public class JwtUtil {
 
     // Método para crear el JWT y enviarlo al cliente en el header de la respuesta
     static void addAuthentication(HttpServletResponse res, String username) {
-
-
-
         String token = Jwts.builder()
                 .setSubject(username)
 

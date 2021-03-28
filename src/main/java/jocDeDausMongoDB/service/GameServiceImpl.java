@@ -23,6 +23,7 @@ import java.util.List;
  * automaticamente por la funcionalidad de inyeccion de dependencias de Spring
  *
  */
+
 @Service
 public class GameServiceImpl implements IGameService {
 
@@ -32,11 +33,6 @@ public class GameServiceImpl implements IGameService {
     @Override
     public List<GameCollection> allGames() {
         return iGameRepository.findAll();
-    }
-
-    @Override
-    public Long countAll() {
-        return iGameRepository.count();
     }
 
     @Override
